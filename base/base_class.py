@@ -1,4 +1,5 @@
 import datetime
+from faker import Faker
 
 
 
@@ -34,6 +35,35 @@ class Base():
         print("Good value url")
 
     """Method assert total cost"""
-    def assert_total_cost(self, total_cost, result):
+    @staticmethod
+    def assert_total_cost(total_cost, result):
         assert total_cost == result, print('Bad total cost:', total_cost, 'result:', result)
         print("Good value total cost:", total_cost)
+
+    """Method create test name"""
+    @staticmethod
+    def create_test_name():
+        faker = Faker('ru_RU')
+        name = faker.name().split()
+        return name
+
+    """Method create test phone number"""
+    @staticmethod
+    def create_test_phone_number():
+        faker = Faker('ru_RU')
+        number = faker.phone_number()
+        return number
+
+    """Method create test street name"""
+    @staticmethod
+    def create_test_address():
+        faker = Faker('ru_RU')
+        address = faker.street_address().split(',')
+        return address
+
+    """Method create test email"""
+    @staticmethod
+    def create_test_email():
+        faker = Faker('ru_RU')
+        email = faker.email()
+        return email

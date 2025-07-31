@@ -105,17 +105,19 @@ class OrderPage(Base):
     def entry_recipients_details(self):
         self.get_current_url()
         self.assert_url('https://www.citilink.ru/order/checkout/')
-        self.input_first_name('Test first name')
-        self.input_last_name('Test last name')
-        self.input_phone_number('9999999999')
+        name = Base.create_test_name()
+        self.input_first_name(name[1])
+        self.input_last_name(name[0])
+        self.input_phone_number(Base.create_test_phone_number())
         self.get_screenshot('entry_recipients_details')
 
     def entry_receipt_and_payment_delivery(self):
         self.click_delivery()
-        self.input_street('Test Street')
+        address = Base.create_test_address()
+        self.input_street(address[0])
         self.click_add_street()
-        self.input_building('D44')
-        self.input_email('testMail@mail.com')
+        self.input_building(address[1])
+        self.input_email(Base.create_test_email())
         self.get_screenshot('entry_receipt_and_payment_delivery')
         self.assert_total_cost(self.int_total_cost_order() + self.int_price_delivery(), 19990 + self.int_price_delivery()) # Не получилось сделать иначе, в элементе с ценой доставки она всегда прописана, но к итоговой сумме применяется с нормальной такой задержкой (при автотесте)
 
