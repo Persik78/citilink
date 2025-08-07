@@ -13,7 +13,7 @@ class Filters(Base):
 
     # Locators
     filters_menu = '//div[@data-meta-name="FiltersLayout"]'
-    apply_filters = '//button[@class="e133q3zd0 app-catalog-29cvob-Button--StyledButton-Button--Button ekx3zbi0"]'
+    apply_filters = '//button[@class="e133q3zd0 app-catalog-1j7df12-Button--StyledButton-Button--Button ekx3zbi0"]'
 
     # Locators filters processor
     # Locators Brand processor
@@ -34,6 +34,7 @@ class Filters(Base):
     def get_filters_menu(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.filters_menu)))
     def get_apply_filters(self):
+        # return self.driver.find_element(By.XPATH, self.apply_filters)
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.apply_filters)))
 
     # Getter filters processor
@@ -66,9 +67,9 @@ class Filters(Base):
     # Methods
     def select_apply_filters(self):
         self.click_apply_filters()
-        time.sleep(2) # URL не успевает измениться
+        time.sleep(3) # URL не успевает измениться
         self.get_current_url()
-        self.assert_url('https://www.citilink.ru/catalog/processory/?ref=mainmenu&pf=rating.any&f=rating.any%2Camd%2C156_26ryzend17%2C157_26am5%2C24524_26amdd1ryzend17xxx')
+        self.assert_url('https://www.citilink.ru/catalog/processory/?ref=mainmenu&pf=rating.any%2Cdiscount.any&f=rating.any%2Cdiscount.any%2Camd%2C156_26ryzend17%2C157_26am5%2C24524_26amdd1ryzend17xxx')
         self.get_screenshot('select_apply_filters')
         # self.assert_url('')
 

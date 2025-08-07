@@ -24,7 +24,7 @@ options.add_argument("--start-maximized")
 
 def test_buy_processor_amd_ryzen_7_7700(set_up):
     total_cost_var = 0
-    path = 'C:\\Users\\swert\\PycharmProjects\\resource\\chromedriver.exe'
+    path = 'resource\\chromedriver.exe'
     driver = webdriver.Chrome(service=Service(path), options=options)
 
     main = MainPage(driver)
